@@ -2,7 +2,7 @@ export type User = {
   id: string;
   username: string;
   email: string;
-  role: 'admin' | 'manager' | 'driver';
+  role: "admin" | "manager" | "driver";
   name: string;
 };
 
@@ -13,7 +13,7 @@ export type Vehicle = {
   year: number;
   licensePlate: string;
   currentMileage: number;
-  status: 'available' | 'in-use' | 'maintenance';
+  status: "available" | "in-use" | "maintenance";
   lastMaintenance: string;
   fuelLevel: number;
   location: {
@@ -28,7 +28,7 @@ export type Driver = {
   email: string;
   phone: string;
   license: string;
-  status: 'available' | 'on-trip' | 'off-duty';
+  status: "available" | "on-trip" | "off-duty";
   performanceScore: number;
   trips: Trip[];
 };
@@ -43,16 +43,26 @@ export type Trip = {
   endLocation: string;
   distance: number;
   purpose: string;
-  status: 'planned' | 'in-progress' | 'completed';
+  status: "planned" | "in-progress" | "completed";
 };
 
-export type MaintenanceRecord = {
+export interface MaintenanceRecord {
   id: string;
   vehicleId: string;
   type: string;
   date: string;
-  mileage: number;
+  status: "scheduled" | "in-progress" | "completed";
   cost: number;
-  description: string;
-  status: 'scheduled' | 'in-progress' | 'completed';
-};
+  priority: "low" | "medium" | "high";
+  notes?: string;
+}
+
+export interface MaintenanceFormData {
+  vehicleId: string;
+  type: string;
+  date: string;
+  cost: string;
+  status:string;
+  priority: "low" | "medium" | "high";
+  notes: string;
+}
