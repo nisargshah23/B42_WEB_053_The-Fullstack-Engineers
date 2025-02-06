@@ -28,9 +28,11 @@ export type Driver = {
   email: string;
   phone: string;
   license: string;
-  status: "available" | "on-trip" | "off-duty";
+  status: string ;
+  // status: string;
   performanceScore: number;
   trips: Trip[];
+  location: string;
 };
 
 export type Trip = {
