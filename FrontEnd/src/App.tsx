@@ -8,6 +8,9 @@ import Vehicles from './components/Vehicles';
 import Drivers from './components/Drivers';
 import Maintenance from './components/Maintenance';
 import Reports from './components/Reports';
+import AuthForm from './components/Auth';
+
+
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const user = useAuthStore((state) => state.user);
@@ -18,7 +21,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
+        
+        <Route path="/login" element={<AuthForm />} />
+
         <Route
           path="/"
           element={
@@ -32,6 +38,7 @@ function App() {
           <Route path="drivers" element={<Drivers />} />
           <Route path="maintenance" element={<Maintenance />} />
           <Route path="reports" element={<Reports />} />
+         
         </Route>
       </Routes>
     </Router>
