@@ -1,55 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapPin, Battery, PenTool as Tool, Plus, X } from 'lucide-react';
+import { Vehicle, VehicleFormData } from '../types';
+import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, fetchVehicle } from '../store/actions/vehicleAction';
+import { RootState } from '../store/store';
+import { useSelector } from 'react-redux';
 
 function Vehicles() {
+  const dispatch=useDispatch<AppDispatch>();
+  const { records, loading, error } = useSelector((state: RootState) => state.vehicles);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [newVehicle, setNewVehicle] = useState({
-    make: '',
-    model: '',
-    year: '',
-    licensePlate: '',
-    fuelLevel: 100,
+  
+  const [newVehicle, setNewVehicle] = useState<Vehicle>({
+  make: "",
+  model: "",
+  year: "",
+  licensePlate: "",
+  currentMileage: "",
+  status: "available",
+  lastMaintenance: "",
+  fuelLevel: "",
+  location:"",
   });
-  const [vehicles, setVehicles] = useState([
-    {
-      id: '1',
-      make: 'Toyota',
-      model: 'Hilux',
-      licensePlate: 'ABC123',
-      status: 'available',
-      location: 'Warehouse A',
-      fuelLevel: 75,
-      lastMaintenance: '2024-02-15',
-    },
-    {
-      id: '2',
-      make: 'Ford',
-      model: 'Transit',
-      licensePlate: 'XYZ789',
-      status: 'in-use',
-      location: 'Route 27',
-      fuelLevel: 45,
-      lastMaintenance: '2024-02-10',
-    },
-  ]);
+const [vehicles, setVehicles] = useState<Vehicle[]>();
+  
+  useEffect(()=>{
+    console.log("calling the action function")
+    dispatch(fetchVehicle());
+    
+    console.log("vehicles",vehicles)
+  },[dispatch])
 
+
+console.log("records",records)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const vehicle = {
-      id: (vehicles.length + 1).toString(),
+      id: uuidv4(),
       ...newVehicle,
-      status: 'available',
-      location: 'Warehouse A',
-      lastMaintenance: new Date().toISOString().split('T')[0],
     };
-    setVehicles([...vehicles, vehicle]);
+    setVehicles(records)
+    setVehicles([vehicle]);
     setShowAddForm(false);
     setNewVehicle({
-      make: '',
-      model: '',
-      year: '',
-      licensePlate: '',
-      fuelLevel: 100,
+      id:"",
+      make: "",
+  model: "",
+  year: "",
+  licensePlate: "",
+  currentMileage: "",
+  status: "available",
+  lastMaintenance: "",
+  fuelLevel: "",
+  location: ""
     });
   };
 
@@ -116,6 +120,49 @@ function Vehicles() {
                   required
                 />
               </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Location</label>
+                <input
+                  type="text"
+                  value={newVehicle.location}
+                  onChange={(e) => setNewVehicle({ ...newVehicle, location: e.target.value })}
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Last Maintenance</label>
+                <input
+                  type="text"
+                  value={newVehicle.lastMaintenance}
+                  onChange={(e) => setNewVehicle({ ...newVehicle, lastMaintenance: e.target.value })}
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Fuel</label>
+                <input
+                  type="text"
+                  value={newVehicle.fuelLevel}
+                  onChange={(e) => setNewVehicle({ ...newVehicle, fuelLevel: e.target.value })}
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Current Mileage</label>
+                <input
+                  type="text"
+                  value={newVehicle.currentMileage}
+                  onChange={(e) => setNewVehicle({ ...newVehicle, currentMileage: e.target.value })}
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
               <div className="pt-4">
                 <button
                   type="submit"
@@ -130,7 +177,7 @@ function Vehicles() {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {vehicles.map((vehicle) => (
+        {records && records.map((vehicle) => (
           <div key={vehicle.id} className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
             <div className="flex justify-between items-start mb-4">
               <div>
