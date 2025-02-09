@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/auth';
-import { LayoutDashboard, Truck, Users, PenTool as Tool, FileBarChart, LogOut, Menu, ChevronLeft, X } from 'lucide-react';
+import { LayoutDashboard, Truck, Users, PenTool as Tool, FileBarChart, LogOut, Menu, ChevronLeft } from 'lucide-react';
 
 const Layout = () => {
   const [isExpanded, setIsExpanded] = useState(true);

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { MessageCircle, Send, X, ChevronDown } from 'lucide-react';
+import { MessageCircle, Send, X } from 'lucide-react';
 import { RootState } from '../store/store';
 import { ChatActionTypes, sendMessage } from '../store/actions/support.action';
 import { Message } from '../types';

@@ -2,7 +2,6 @@
 import { AnyAction } from "redux";
 import { ChatState } from "../../types";
 import {
-  ChatActionTypes,
   RECEIVE_MESSAGE,
   SEND_MESSAGE,
   SET_ERROR,
