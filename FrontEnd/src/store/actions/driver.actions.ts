@@ -17,7 +17,7 @@ export type AppDispatch = ThunkDispatch<
   { type: string; payload?: any }
 >;
 
-export const fetchDrivers = () => async (dispatch: AppDispatch) => { debugger
+export const fetchDrivers = () => async (dispatch: AppDispatch) => { 
   dispatch({ type: SET_LOADING, payload: true });
   try {
     const response = await axios.get(`${API_URL}.json`);

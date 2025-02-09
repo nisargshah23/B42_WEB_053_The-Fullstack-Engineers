@@ -7,19 +7,16 @@ export type User = {
 };
 
 export type Vehicle = {
-  id: string;
+  id?: string;
   make: string;
   model: string;
-  year: number;
+  year: string;
   licensePlate: string;
-  currentMileage: number;
+  currentMileage: string;
   status: "available" | "in-use" | "maintenance";
   lastMaintenance: string;
-  fuelLevel: number;
-  location: {
-    lat: number;
-    lng: number;
-  };
+  fuelLevel: string;
+  location: string
 };
 
 export type Driver = {
@@ -67,4 +64,17 @@ export interface MaintenanceFormData {
   status:string;
   priority: "low" | "medium" | "high";
   notes: string;
+}
+
+export interface VehicleFormData{
+  id?: string;
+  make: string;
+  model: string;
+  year: string;
+  licensePlate: string;
+  currentMileage: string;
+  status: "available" | "in-use" | "maintenance";
+  lastMaintenance: string;
+  fuelLevel: string;
+  location: string
 }

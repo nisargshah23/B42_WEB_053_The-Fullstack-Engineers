@@ -3,11 +3,13 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { maintenanceReducer } from "./reducers/maintenance.reducer";
 import { thunk } from "redux-thunk";
 import { driverReducer } from "./reducers/driver.reducer";
+import { vehicleReducer } from "./reducers/VehicleReducer";
 
 
 const rootReducer = combineReducers({
   maintenance: maintenanceReducer,
-  drivers: driverReducer
+  drivers: driverReducer,
+  vehicles:vehicleReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
