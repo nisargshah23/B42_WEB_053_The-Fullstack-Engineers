@@ -17,7 +17,7 @@ To get started with FleetManagerPro, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/FleetManagerPro.git
+   git clone https://github.com/nisargshah23/B42_WEB_053_The-Fullstack-Engineers.git
    cd FleetManagerPro
    ```
 
