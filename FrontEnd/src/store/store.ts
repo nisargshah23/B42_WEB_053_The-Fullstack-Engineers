@@ -10,7 +10,6 @@ const rootReducer = combineReducers({
   maintenance: maintenanceReducer,
   drivers: driverReducer,
   vehicles:vehicleReducer
-  auth: authReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
