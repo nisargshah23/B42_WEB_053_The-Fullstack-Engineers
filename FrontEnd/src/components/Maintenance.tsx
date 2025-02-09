@@ -16,9 +16,11 @@ const Maintenance: React.FC = () => {
   // console.log(data)
   const [showForm, setShowForm] = useState(false);
   const [editRecord, setEditRecord] = useState<MaintenanceRecord | undefined>(undefined);
-
+  const API_KEY: string = import.meta.env.GEMINI_API_KEY 
   useEffect(() => {
     dispatch(fetchMaintenance());
+
+    
   }, [dispatch]);
 
   const handleEdit = (record: MaintenanceRecord) => {

@@ -1,3 +1,4 @@
+import { AnyAction } from "redux";
 import { MaintenanceRecord } from "../../types";
 import { ADD_MAINTENANCE, FETCH_MAINTENANCE, SET_ERROR, SET_LOADING, UPDATE_MAINTENANCE } from "../actions/maintenance.action";
 
@@ -13,7 +14,7 @@ interface MaintenanceState {
     error: null
   };
   
-  export const maintenanceReducer = (state = initialState, action: any) => {
+  export const maintenanceReducer = (state = initialState, action: AnyAction) => {
     switch (action.type) {
       case FETCH_MAINTENANCE:
         return {

@@ -8,6 +8,8 @@ import Vehicles from './components/Vehicles';
 import Drivers from './components/Drivers';
 import Maintenance from './components/Maintenance';
 import Reports from './components/Reports';
+// import ChatSupport from './components/Support';
+import FloatingChatSupport from './components/Support';
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const user = useAuthStore((state) => state.user);
@@ -24,6 +26,7 @@ function App() {
           element={
             <PrivateRoute>
               <Layout />
+              <FloatingChatSupport/>
             </PrivateRoute>
           }
         >

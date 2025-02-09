@@ -66,3 +66,18 @@ export interface MaintenanceFormData {
   priority: "low" | "medium" | "high";
   notes: string;
 }
+
+
+// Types for CHat support
+export interface Message {
+  id: string;
+  text: string;
+  sender: 'user' | 'bot';
+  timestamp: Date;
+}
+
+export interface ChatState {
+  messages: Message[];
+  isLoading: boolean;
+  error: string | null;
+}
